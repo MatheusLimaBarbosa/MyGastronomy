@@ -15,7 +15,7 @@ export default function Navbar() {
         <nav className={styles.navbarContainer}>
             <div className={styles.navbarItems}>
                 <Link to={'/'}>
-                <img className={styles.logo} src="/logo.png" alt="" />
+                <img className={styles.logo} src="/imgs/logo.png" alt="" />
                 </Link>
                 <div className={styles.navbarLinksContainer}>
                     <Link to={'/'} className={styles.navbarLink}>Home</Link>
@@ -30,7 +30,7 @@ export default function Navbar() {
             </div>
 
             <div className={styles.mobileNavbarItems}>
-                <Link to={'/'}><img className={styles.logo} src="/logo.png" alt="" /></Link>
+                <Link to={'/'}><img className={styles.logo} src="/imgs/logo.png" alt="" /></Link>
                 <div className={styles.mobileNavbarBtns}>
                     <Link to={'/cart'}>
                         <LuShoppingCart className={styles.navbarLink} />
@@ -46,9 +46,9 @@ export default function Navbar() {
                     >
                         
                     <div className={styles.drawer}>
-                        <Link to={'/'} className={styles.navbarLink}>Home</Link>
-                        <Link to={'/plates'} className={styles.navbarLink}>Plates</Link>
-                        <Link to={'/profile'} className={styles.navbarLink}>Profile</Link>
+                        <Link to={'/'} className={styles.navbarLink} onClick={handleOpenMenu}>Home</Link>
+                        <Link to={'/plates'} className={styles.navbarLink} onClick={handleOpenMenu}>Plates</Link>
+                        <Link to={'/profile'} className={styles.navbarLink} onClick={handleOpenMenu}>Profile</Link>
                     </div>
                 </Drawer>
 

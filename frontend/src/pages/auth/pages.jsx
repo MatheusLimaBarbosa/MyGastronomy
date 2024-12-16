@@ -3,6 +3,7 @@ import { TextField, Button, CircularProgress } from "@mui/material";
 import styles from './page.module.css';
 import authServices from "../../services/auth";
 import { useNavigate } from "react-router-dom";
+import { LuLogIn } from "react-icons/lu";
 
 export default function Auth() {
     const [formType, setFormType] = useState('login');
@@ -59,7 +60,7 @@ export default function Auth() {
             {formType === 'login' && (
                 <>
                     <h1>Login</h1>
-                    <Button onClick={handleChangeFormType}>Don't you have an account? Click here</Button>
+                    <button onClick={handleChangeFormType}>Don't you have an account? Click here</button>
                     <form onSubmit={handleSubmitForm}>
                         <TextField
                             required
@@ -75,7 +76,7 @@ export default function Auth() {
                             name="password"
                             onChange={handleFormDataChange}
                         />
-                        <Button type="submit" variant="contained">Login</Button>
+                        <button type="submit" variant="contained">Login<LuLogIn/></button>
                     </form>
                 </>
             )}
@@ -83,7 +84,7 @@ export default function Auth() {
             {formType === 'signup' && (
                 <>
                     <h1>Signup</h1>
-                    <Button onClick={handleChangeFormType}>Already have an account? Click here</Button>
+                    <button onClick={handleChangeFormType}>Already have an account? Click here</button>
                     <form onSubmit={handleSubmitForm}>
                         <TextField
                             required
@@ -113,7 +114,7 @@ export default function Auth() {
                             name="confirmPassword"
                             onChange={handleFormDataChange}
                         />
-                        <Button type="submit" variant="contained">Signup</Button>
+                        <button type="submit" variant="contained">Signup<LuLogIn/></button>
                     </form>
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                 </>

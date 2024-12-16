@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import authServices from "../../services/auth";
 import orderServices from "../../services/order";
 import styles from './page.module.css'
+import { LuLogOut, LuTimer, LuCircleAlert, LuCircleCheck } from "react-icons/lu";
+import { Link } from "react-router-dom";
+import Loading from "../loading/pages";
 
 export default function Profile() {
     const { logout } = authServices();
@@ -19,7 +22,7 @@ export default function Profile() {
     }, [authData, navigate, refetchOrders]);  
 
     if(orderLoading) {
-        return(<h1>Loading...</h1>)
+        return(<Loading/>)
     }
 
     const handleLogout = () => {
@@ -39,13 +42,15 @@ export default function Profile() {
                 <h1>{authData?.user?.fullname}</h1>
                 <h3>{authData?.user?.email}</h3>
             </div>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout}>Logout<LuLogOut /></button>
 
             {ordersList.length > 0 ?
                 <div className={styles.ordersContainer}>
                     {ordersList.map((order) => (
                         <div key={order._id} className={styles.orderContainer}>
-                            <h3>{order.pickupStatus}</h3>
+                            {order.pickupStatus === 'Pending' ? <p className={`${styles.pickupStatus} ${styles.pending}`}><LuTimer/>{order.pickupStatus}</p> : null}
+                            {order.pickupStatus === 'Completed' ? <p className={`${styles.pickupStatus} ${styles.completed}`}><LuCircleCheck/>{order.pickupStatus}</p> : null}
+                            {order.pickupStatus === 'Canceled' ? <p className={`${styles.pickupStatus} ${styles.canceled}`}><LuCircleAlert/>{order.pickupStatus}</p> : null}
                             <h3>{order.pickupTime}</h3>
                             {order.orderItems.map((item) => (
                                 <div key={item._id}>
@@ -58,7 +63,8 @@ export default function Profile() {
                 </div>
             :
                 <div>
-                    You do not have orders yet
+                    You do not have orders yet.
+                    <Link to={'/plates'} className={styles.platesLink}>Click here and see our specialities</Link>
                 </div>    
             }
         </div>
