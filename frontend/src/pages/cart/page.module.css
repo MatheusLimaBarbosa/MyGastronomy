@@ -1,0 +1,108 @@
+/* Layout para telas maiores */
+.itemContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1em;
+}
+
+.itemContainer img {
+    width: 200px;
+    height: 100%;
+    border-radius: 1em;
+    object-fit: cover;
+}
+
+.itemsListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.itemContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+}
+
+.portionContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.portionBtns {
+    display: flex;
+    gap: 0.2em;
+}
+
+.confirmBtn {
+    position: fixed;
+    font-size: x-large;
+    bottom: 2em;
+}
+
+/* Media Query para telas menores (dispositivos móveis) */
+@media (max-width: 768px) {
+    /* Ajustando o layout dos itens */
+    .itemContainer {
+        display: flex;
+        flex-direction: column; /* Colocar as imagens e informações em uma coluna */
+        align-items: center;
+        gap: 1em;
+    }
+
+    /* Redimensionando a imagem */
+    .itemContainer img {
+        width: 150px; /* Reduzindo a largura da imagem */
+        height: auto; /* Ajustando a altura automaticamente */
+    }
+
+    /* Ajustando o conteúdo do item */
+    .itemContent {
+        width: 90%; /* Tornar o conteúdo do item um pouco mais estreito */
+        align-items: center;
+    }
+
+    /* Ajustando os botões de porção */
+    .portionBtns {
+        justify-content: center; /* Centralizar os botões de quantidade */
+    }
+
+    /* Ajustando o botão de confirmar pedido */
+    .confirmBtn {
+        font-size: large; /* Tamanho menor do botão em telas pequenas */
+        bottom: 1.5em; /* Distância menor do fundo */
+    }
+}
+
+/* Para telas muito pequenas (como smartphones em modo retrato) */
+@media (max-width: 480px) {
+    .pageContainer {
+        gap: 1.5em; /* Menos espaço entre os elementos */
+    }
+
+    .itemContainer {
+        padding: 1em; /* Adicionando padding para dar mais espaço em telas pequenas */
+    }
+
+    .itemContent {
+        width: 100%; /* Tornar o conteúdo ocupar toda a largura disponível */
+    }
+
+    .portionBtns {
+        gap: 0.5em; /* Aumentando o espaçamento entre os botões */
+    }
+
+    .confirmBtn {
+        font-size: medium; /* Menor ainda no botão de confirmação */
+        bottom: 1em; /* Botão mais próximo da parte inferior da tela */
+    }
+}

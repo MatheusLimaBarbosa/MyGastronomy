@@ -1,5 +1,4 @@
-import { useState } from "react";
-
+import { useState } from "react"
 
 export default function orderServices() {
     const [orderLoading, setOrderLoading] = useState(false)
@@ -10,7 +9,7 @@ export default function orderServices() {
 
     const getUserOrders = (userId) => {
         setOrderLoading(true)
-
+        
         fetch(`${url}/userorders/${userId}`, {
             method: 'GET',
             headers: {
@@ -18,23 +17,45 @@ export default function orderServices() {
                 'Access-Control-Allow-Origin': '*'
             },
         })
-            .then((response) => response.json())
-            .then((result) => {
-                if(result.success) {
-                    setOrdersList(result.body)
-                } else {
-                    console.log(result)
-                }
+        .then((response) => response.json())
+        .then((result) => {
+            if(result.success) {
+                setOrdersList(result.body)
+            } else {
                 console.log(result)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-            .finally(() => {
-                setOrderLoading(false)
-                setRefetchOrders(false)
-            })
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        .finally(() => {
+            setOrderLoading(false)
+            setRefetchOrders(false)
+        })
     }
 
-    return { getUserOrders, orderLoading, refetchOrders, ordersList }
+    const sendOrder = (orderData) => {
+        setOrderLoading(true)
+        
+        fetch(`${url}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(orderData)
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        .finally(() => {
+            setOrderLoading(false)
+        })
+    }
+
+    return { getUserOrders, orderLoading, refetchOrders, ordersList, sendOrder }
 }

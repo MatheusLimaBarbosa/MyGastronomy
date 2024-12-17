@@ -15,7 +15,7 @@
 main {
     max-width: 1280px;
     margin: 0 auto;
-    min-height: 40vh; 
+    min-height: 100vh; 
 }
 
 button {
